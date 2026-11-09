@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Back to Rotation Money</title>
+<style>body{font:16px/1.5 system-ui,sans-serif;margin:0;padding:32px 20px;background:#f3f5f4;color:#14232b}main{max-width:420px;margin:auto}a.b{display:block;text-align:center;background:#0e6a86;color:#fff;text-decoration:none;padding:14px;border-radius:12px;font-weight:600;margin:20px 0}button{font:inherit;padding:10px 14px;border-radius:10px;border:1px solid #c9d3d6;background:#fff}code{word-break:break-all;background:#fff;padding:8px;border-radius:8px;display:block;margin:8px 0;font-size:13px}@media(prefers-color-scheme:dark){body{background:#0f1719;color:#e6edef}code,button{background:#1b2629;color:#e6edef;border-color:#33454a}}</style></head>
+<body><main><h1 id="t">Revolut approved</h1><p id="m">Opening Rotation Money…</p>
+<a class="b" id="go" href="#">Back to Rotation Money</a>
+<p>If the app does not open, copy this link and paste it in the app under Settings, Revolut connection, "Did not come back to the app?".</p>
+<code id="u"></code><button id="c" type="button">Copy link</button></main>
+<script>
+var q = location.search || '';
+var p = new URLSearchParams(q);
+if (p.get('error')) { document.getElementById('t').textContent = 'Not approved'; document.getElementById('m').textContent = p.get('error_description') || p.get('error'); }
+var intent = 'intent://auth' + q + '#Intent;scheme=rotationmoney;package=pt.guilherme.rotationmoney;end';
+document.getElementById('go').href = intent;
+document.getElementById('u').textContent = location.href;
+document.getElementById('c').onclick = function () { navigator.clipboard.writeText(location.href).then(function () { document.getElementById('c').textContent = 'Copied'; }); };
+if (p.get('code') || p.get('error')) setTimeout(function () { location.href = intent; }, 300);
+</script></body></html>
